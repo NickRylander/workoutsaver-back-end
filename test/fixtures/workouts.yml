@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  workout_name: MyString
+  workout_number: 1
+  date: 2020-12-10 14:06:02
+  completed: false
+
+two:
+  workout_name: MyString
+  workout_number: 1
+  date: 2020-12-10 14:06:02
+  completed: false
