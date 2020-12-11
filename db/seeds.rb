@@ -11,6 +11,7 @@ Workout.create([
         workout_name: "Fran",
         workout_number: 1,
         date: Time.now - 1.week,
+        completed: true,
         goal: "For time",
         rounds: 0
     },
@@ -18,6 +19,7 @@ Workout.create([
         workout_name: "Helen",
         workout_number: 2,
         date: Time.now - 2.weeks,
+        completed: false,
         goal: "For time",
         rounds: 3
     }
