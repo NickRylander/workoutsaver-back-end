@@ -1,20 +1,23 @@
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :update, :destroy]
-
+  require 'pry'
   # GET /workouts
   def index
+    # binding.pry
     @workouts = Workout.all
 
-    render json: @workouts.as_json(include: {movements: {only:[:id, :movement_name, :reps, :weight]}})
+    render json: @workouts.as_json(include: {movements: {only:[:id, :movement_name, :reps, :weight, :workout_id]}})
   end
 
   # GET /workouts/1
   def show
-    render json: @workout.as_json(include: {movements: {only:[:id, :movement_name, :reps, :weight]}})
+    # binding.pry
+    render json: @workout.as_json(include: {movements: {only: [:id, :movement_name, :reps, :weight, :workout_id]}})
   end
 
   # POST /workouts
   def create
+    binding.pry
     @workout = Workout.new(workout_params)
 
     if @workout.save
@@ -46,6 +49,6 @@ class WorkoutsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def workout_params
-      params.require(:workout).permit(:workout_name, :workout_number, :date, :completed, movements_attributes: [:movement_name, :reps, :weight, :workout_id])
+      params.require(:workout).permit(:id, :workout_name, :workout_number, :completed, :goal, :rounds, movements_attributes: [:movement_name, :reps, :weight, :workout_id])
     end
 end
