@@ -5,12 +5,12 @@ class WorkoutsController < ApplicationController
   def index
     @workouts = Workout.all
 
-    render json: @workouts
+    render json: @workouts.as_json(include: {movements: {only:[:id, :movement_name, :reps, :weight]}})
   end
 
   # GET /workouts/1
   def show
-    render json: @workout
+    render json: @workout.as_json(include: {movements: {only:[:id, :movement_name, :reps, :weight]}})
   end
 
   # POST /workouts
@@ -46,6 +46,6 @@ class WorkoutsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def workout_params
-      params.require(:workout).permit(:workout_name, :workout_number, :date, :completed)
+      params.require(:workout).permit(:workout_name, :workout_number, :date, :completed, movements_attributes: [:movement_name, :reps, :weight, :workout_id])
     end
 end
