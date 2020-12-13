@@ -15,6 +15,7 @@ class MovementsController < ApplicationController
 
   # POST /movements
   def create
+    # binding.pry
     @movement = Movement.new(movement_params)
 
     if @movement.save

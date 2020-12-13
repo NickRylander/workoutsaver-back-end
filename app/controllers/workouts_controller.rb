@@ -3,7 +3,6 @@ class WorkoutsController < ApplicationController
   require 'pry'
   # GET /workouts
   def index
-    # binding.pry
     @workouts = Workout.all
 
     render json: @workouts.as_json(include: {movements: {only:[:id, :movement_name, :reps, :weight, :workout_id]}})
@@ -11,13 +10,11 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts/1
   def show
-    # binding.pry
     render json: @workout.as_json(include: {movements: {only: [:id, :movement_name, :reps, :weight, :workout_id]}})
   end
 
   # POST /workouts
   def create
-    binding.pry
     @workout = Workout.new(workout_params)
 
     if @workout.save
